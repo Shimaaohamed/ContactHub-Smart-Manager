@@ -105,46 +105,33 @@ function renderMainGrid(data = contacts) {
 }
 
 
-
 function renderSubSection(property, elementId, emptyMsg) {
     const listElement = document.getElementById(elementId);
-   
-    const filtered = contacts.filter(c => c[property]);
+    const filtered = contacts.filter(c => c[property]); 
 
     listElement.innerHTML = '';
-    
     if (filtered.length === 0) {
-        listElement.innerHTML = `<div class="w-100 text-center py-4 text-muted" style="font-style: italic;">${emptyMsg}</div>`;
+        listElement.innerHTML = `<div class="empty-msg w-100">${emptyMsg}</div>`; 
         return;
     }
 
-
-    filtered.forEach((contact) => {
+    filtered.forEach(contact => {
         const initials = contact.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
         listElement.innerHTML += `
-            <div class="col-md-6 col-lg-4 p-2"> <div class="mini-contact-card shadow-sm">
+            <div class="col-md-6 col-lg-4">
+                <div class="mini-contact-card shadow-sm border">
                     <div class="d-flex align-items-center">
-                        <div class="initials me-3" style="width:45px; height:45px; font-size:1rem; border-radius: 12px;">${initials}</div>
+                        <div class="initials me-2" style="width:40px; height:40px; font-size:0.9rem;">${initials}</div>
                         <div>
-                            <div class="fw-bold small" style="color: #2d3436;">${contact.name}</div>
-                            <div class="text-muted" style="font-size:0.75rem;">${contact.phone}</div>
+                            <div class="fw-bold small">${contact.name}</div>
+                            <div class="text-muted" style="font-size:0.7rem;">${contact.phone}</div>
                         </div>
                     </div>
-                    <a href="tel:${contact.phone}" class="action-btn text-success shadow-sm" style="background: #f8faff;">
-                        <i class="fas fa-phone-alt" style="font-size: 0.8rem;"></i>
-                    </a>
+                    <a href="tel:${contact.phone}" class="action-btn text-success"><i class="fas fa-phone"></i></a>
                 </div>
             </div>
         `;
     });
-}
-
-function saveAndRefresh() {
-    localStorage.setItem('contactHub_Final', JSON.stringify(contacts));
-    renderMainGrid(); 
-    renderSubSection('isFav', 'favoritesList', 'No favorites yet'); 
-    renderSubSection('isEmer', 'emergencyList', 'No emergency contacts'); 
-    updateStats(); 
 }
 
 
@@ -188,7 +175,7 @@ function toggleStatus(index, property) {
 }
 
 function saveAndRefresh() {
-    localStorage.setItem('contactHub_v3', JSON.stringify(contacts)); 
+    localStorage.setItem('contactHub_v3', JSON.stringify(contacts)); // حفظ البيانات
     renderAll(); 
 }
 
