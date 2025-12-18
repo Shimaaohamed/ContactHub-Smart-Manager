@@ -3,129 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What's For Dinner</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>ContactHub | Smart Manager</title>
     <link rel="stylesheet" href="css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-  
-
     <nav class="navbar">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center gap-3">
-                <div class="logo-circle">
-                    <i class="fa-solid fa-utensils"></i>
-                </div>
-                <div>
-                    <div class="brand-text">What's For Dinner</div>
-                    <div class="sub-text">Your daily meal inspiration</div>
-                </div>
+        <div class="nav-left">
+            <div class="logo-icon"><i class="fas fa-address-book"></i></div>
+            <div class="logo-text">
+                <h1>ContactHub</h1>
+                <span>Smart Contact Manager</span>
             </div>
-            <div class="nav-actions d-flex align-items-center gap-4">
-                <i class="fa-solid fa-bookmark"></i>
-                <i class="fa-solid fa-clock-rotate-left"></i>
-                <i class="fa-solid fa-gear"></i>
-                <img src="image/avatar-1-CwUcGkzI.jpg" alt="Profile" class="profile-pic">
-               
+        </div>
+        <div class="nav-right">
+            <button id="addBtn" class="add-contact-btn" onclick="prepareAdd()"><i class="fas fa-plus"></i> Add Contact</button>
+            <i class="far fa-bell icon-btn"></i>
+            <i class="fas fa-cog icon-btn"></i>
+            <img src="image/avatar-1-CwUcGkzI.jpg" class="initials2">
         </div>
     </nav>
 
-    <div class="container main-wrapper">
-        <div class="recipe-card row g-0">
-            
-            <div class="col-lg-5 recipe-image-col">
-                <div class="rating-pill">
-                    <i class="fa-solid fa-star text-warning"></i> 
-                    <span id="rating-val" class="fw-bold ms-1">4.9</span> 
-                    <span id="review-count" class="text-muted ms-1">(478 reviews)</span>
-                </div>
-                
-                <img src="" alt="Food" id="recipe-img" class="main-img">
-
-                <div class="floating-stats">
-                    <div class="stat-box">
-                        <div class="icon-circle orange-icon"><i class="fa-regular fa-clock"></i></div>
-                        <div class="stat-text">
-                            <span class="label">Prep Time</span>
-                            <span class="value" id="prep-time">30 min</span>
-                        </div>
-                    </div>
-                    <div class="vertical-divider"></div>
-                    <div class="stat-box">
-                        <div class="icon-circle red-icon"><i class="fa-solid fa-fire-burner"></i></div>
-                        <div class="stat-text">
-                            <span class="label">Cook Time</span>
-                            <span class="value" id="cook-time">90 min</span>
-                        </div>
-                    </div>
-                    <div class="vertical-divider"></div>
-                    <div class="stat-box">
-                        <div class="icon-circle blue-icon"><i class="fa-solid fa-user-group"></i></div>
-                        <div class="stat-text">
-                            <span class="label">Servings</span>
-                            <span class="value" id="servings">4 people</span>
-                        </div>
-                    </div>
+    <main class="dashboard">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">TOTAL</span>
+                    <h2 id="totalCount">0</h2>
                 </div>
             </div>
-
-            <div class="col-lg-7 recipe-details-col">
-                
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <div id="tags-container">
-                        </div>
-                    <div class="action-buttons">
-                        <button class="btn-icon"><i class="fa-solid fa-bookmark"></i></button>
-                        <button class="btn-icon"><i class="fa-solid fa-share-nodes"></i></button>
-                    </div>
+            <div class="stat-card">
+                <div class="stat-icon orange"><i class="fas fa-star"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">FAVORITES</span>
+                    <h2 id="favCount">0</h2>
                 </div>
-
-                <h1 id="recipe-title">Lasagna Bolognese</h1>
-                <p id="recipe-desc" class="text-muted mb-4">Layered Italian pasta with rich meat sauce and béchamel</p>
-
-                <div id="alert-area"></div>
-
-                <ul class="nav nav-tabs custom-tabs" id="myTab" role="tablist">
-                    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#ingredients"><i class="fa-solid fa-list-ul"></i> Ingredients</button></li>
-                    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#instructions"><i class="fa-solid fa-book-open"></i> Instructions</button></li>
-                    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#nutrition"><i class="fa-solid fa-chart-pie"></i> Nutrition</button></li>
-                    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tips"><i class="fa-solid fa-lightbulb"></i> Chef's Tips</button></li>
-                </ul>
-
-                <div class="tab-content mt-4">
-                    
-                    <div class="tab-pane fade show active" id="ingredients">
-                        <div class="ingredients-box">
-                            <ul class="list-unstyled mb-0" id="ingredients-list">
-                                </ul>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="instructions">
-                        <ul class="list-unstyled instruction-list" id="instructions-list"></ul>
-                    </div>
-
-                    <div class="tab-pane fade" id="nutrition">
-                        <div class="row g-3" id="nutrition-grid">
-                            </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="tips">
-                        <ul class="list-unstyled tips-list" id="tips-list"></ul>
-                    </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon red"><i class="fas fa-heart"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">EMERGENCY</span>
+                    <h2 id="emerCount">0</h2>
                 </div>
-
-                <div class="mt-4 pt-2">
-                    <button class="btn-main" id="next-recipe-btn">
-                        <i class="fa-solid fa-rotate me-2"></i> Try Another Recipe
-                    </button>
-                </div>
-
             </div>
         </div>
+
+        <div class="content-header">
+            <h2>All Contacts</h2>
+            <p id="subCountText">Manage and organize your contacts</p>
+            <div class="search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search by name, phone, or email..." oninput="searchContacts()">
+            </div>
+        </div>
+
+        <div class="contact-grid" id="contactGrid"></div>
+    </main>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New Contact</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <form id="contactForm">
+                <input type="hidden" id="editIndex">
+                <div class="photo-upload">
+                    <div class="photo-preview" id="avatarPreview"><i class="fas fa-user"></i></div>
+                    <button type="button" class="btn-change-photo"><i class="fas fa-camera"></i> Photo Info</button>
+                </div>
+                <input type="text" id="fullName" placeholder="Full Name" required>
+                <input type="text" id="phone" placeholder="Phone Number (e.g. 010...)" required>
+                <input type="email" id="email" placeholder="Email Address">
+                <select id="group">
+                    <option value="Friends">Friends</option>
+                    <option value="Family">Family</option>
+                    <option value="Work">Work</option>
+                    <option value="School">School</option>
+                </select>
+                <div class="form-footer">
+                    <label><input type="checkbox" id="isFav"> <i class="fas fa-star text-warning"></i> Favorite</label>
+                    <label><input type="checkbox" id="isEmer"> <i class="fas fa-heart text-danger"></i> Emergency</label>
+                </div>
+                <button type="submit" class="save-btn" id="saveBtn">Save Contact</button>
+            </form>
+        </div>
     </div>
+
+<div class="contact-grid" id="contactGrid"></div>
+
+
+<div class=" section-box favorites-bg  rounded-4 p-4 shadow-sm">
+    <div class="d-flex align-items-center mb-3">
+        <div class="stat-icon orange me-3"><i class="fa-solid fa-star"></i></div>
+        <div>
+            <h5 class="fw-bold mb-0">Favorites</h5>
+            <small class="text-muted">Quick access</small>
+        </div>
+    </div>
+    <div id="favoritesList" class="row g-2 ">
+        </div>
+</div>
+
+<div class="section-box emergency-bg rounded-4 p-4 shadow-sm">
+    <div class="d-flex align-items-center mb-3">
+        <div class="stat-icon red me-3"><i class="fa-solid fa-heart-pulse"></i></div>
+        <div>
+            <h5 class="fw-bold mb-0">Emergency</h5>
+            <small class="text-muted">Urgent contacts</small>
+        </div>
+    </div>
+    <div id="emergencyList" class="row g-2">
+        </div>
+</div>
+
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>

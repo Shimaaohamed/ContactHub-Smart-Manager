@@ -1,287 +1,188 @@
 :root {
-    --primary-orange: #ff4e00;
-    --primary-gradient: linear-gradient(135deg, #ff6b35 0%, #ff2e00 100%);
-    --bg-light: #fdfdfd;
+    --primary: #6c5ce7;
+    --bg: #f8faff;
+    --white: #ffffff;
     --text-dark: #2d3436;
-    --text-muted: #636e72;
-    --cream-bg: #fffbf2; /* The background for ingredients list */
-    --border-radius: 24px;
+    --text-light: #636e72;
+    --blue-icon: #e0e7ff;
+    --orange-icon: #ffedd5;
+    --red-icon: #ffe4e6;
 }
 
 body {
-    background-color: #FFF9EC;
-    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
     color: var(--text-dark);
 }
 
-/* Navbar */
-.navbar {
-    background: white;
-    padding: 15px 30px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+
+.form-footer{
+     display: flex;
+    align-items: center;  
+    gap: 15px;
+
+}
+.nav-right {
+    display: flex;
+    align-items: center;   
+    gap: 15px;            
 }
 
-.logo-circle {
-    width: 45px;
-    height: 45px;
-    background: var(--primary-gradient);
-    border-radius: 50%;
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.8rem 5%; background: var(--white);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+    position: sticky; top: 0; z-index: 100;
+}
+.nav-left { display: flex; align-items: center; gap: 15px; }
+.logo-icon { background: var(--primary); color: white; padding: 12px; border-radius: 12px; }
+.logo-text h1 { font-size: 1.1rem; margin: 0; }
+.logo-text span { font-size: 0.75rem; color: var(--text-light); }
+
+.add-contact-btn {
+    background: var(--primary); color: white; border: none;
+    padding: 10px 22px; border-radius: 10px; font-weight: 600;
+    cursor: pointer; transition: 0.3s;
+}
+.add-contact-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3); }
+
+/* Stats */
+.dashboard { padding: 2rem 5%; }
+.stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-bottom: 40px; }
+.stat-card {
+    background: var(--white); padding: 25px; border-radius: 18px;
+    height: 50px;
+    display: flex; align-items: center; gap: 20px; box-shadow: 0 0 15px rgba(48, 11, 11, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease
+
+}
+.stat-card:hover{
+     
+       transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(58, 58, 58, 0.15);
+}
+.stat-icon { width: 55px; height: 55px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+.blue { background: var(--blue-icon); color: #4338ca; }
+.orange { background: var(--orange-icon); color: #ea580c; }
+.red { background: var(--red-icon); color: #e11d48; }
+
+/* Grid & Cards */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
+.contact-card {
+    background: white; border-radius: 20px; padding: 25px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.03); transition: 0.3s;
+    border: 1px solid rgba(0,0,0,0.02);
+
+}
+.contact-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+
+.initials {
+    width: 60px; height: 60px; border-radius: 15px; background: var(--primary);
+    color: white; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.4rem;
+}
+
+.card-actions {
+    display: flex; justify-content: space-between; margin-top: 20px;
+    padding-top: 15px; border-top: 1px solid #f8f9fa;
+}
+.action-btn {
+    width: 35px; height: 35px; border-radius: 50%; border: none;
+    background: #f8faff; color: #636e72; cursor: pointer; transition: 0.2s;
+    display: flex; align-items: center; justify-content: center; text-decoration: none;
+}
+.action-btn:hover { background: var(--primary); color: white; }
+.btn-delete:hover { background: #ff7675 !important; }
+
+/* Modal & Search */
+.search-wrapper { position: relative;     max-width: 15000px; ; margin-bottom: 35px; }
+.search-wrapper i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #b2bec3; }
+.search-wrapper input {
+    width: 100%; padding: 14px 14px 14px 50px; border-radius: 12px;
+    border: 1px solid #eee; outline: none; box-sizing: border-box;
+}
+
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); }
+.modal-content { background: white; width: 90%; max-width: 420px; margin: 5% auto; padding: 30px; border-radius: 25px; position: relative; }
+.close { position: absolute; right: 20px; top: 20px; font-size: 1.5rem; cursor: pointer; }
+
+#contactForm input, #contactForm select { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #eee; box-sizing: border-box; }
+.save-btn { width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 600; cursor: pointer; }
+
+.favorites-bg { background-color: #fffaf0; border: 1px solid #ffedd5; }
+.emergency-bg { background-color: #fff5f5; border: 1px solid #ffe4e6; }
+
+.mini-contact-card {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.2rem;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.brand-text {
-    font-weight: 700;
-    font-size: 1.2rem;
-    line-height: 1.1;
-    color: #0d1b2a;
+.empty-msg {
+    text-align: center;
+    color: #9ca3af;
+    padding: 20px;
+    font-style: italic;
 }
 
-.sub-text {
-    font-size: 0.8rem;
-    color: #888;
-}
-
-.nav-actions i {
-    font-size: 1.2rem;
-    color: #576574;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.nav-actions i:hover { color: var(--primary-orange); }
-
-.profile-pic {
+img{
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #eee;
 }
 
-/* Main Layout */
-.main-wrapper {
-    margin-top: 30px;
-    margin-bottom: 30px;
+
+
+.dashboard {
+    max-width: 1140px; /* العرض المثالي ليتناسب مع معظم الشاشات */
+    margin: 40px auto; /* مسافة 40px من الأعلى والأسفل، و auto للتوسيط الجانبي */
+    padding: 0 20px;   /* مسافة أمان جانبية للشاشات الصغيرة */
+    box-sizing: border-box;
 }
 
-.recipe-card {
-    background: white;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-    min-height: 650px;
+/* تحسين شكل صناديق الأقسام لتبدو منفصلة وأنيقة */
+.section-box {
+    margin: 30px auto; /* مسافة بين الأقسام */
+    max-width: 1140px; /* ضمان نفس عرض الـ Dashboard */
+    padding: 25px;
+    border-radius: 20px;
+    transition: 0.3s;
 }
 
-/* Left Column - Image & Overlay */
-.recipe-image-col {
-    position: relative;
-    background-color: #e2e2e2;
-    min-height: 500px;
+/* ألوان الخلفيات الهادئة (Pastel) كما في الصور */
+.favorites-bg { 
+    background-color: #fffaf0; 
+    border: 1px solid #ffedd5; 
 }
 
-.main-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+.emergency-bg { 
+    background-color: #fff5f5; 
+    border: 1px solid #ffe4e6; 
 }
 
-/* Rating Pill (Top Left) */
-.rating-pill {
-    position: absolute;
-    top: 25px;
-    left: 25px;
-    background: white;
-    padding: 8px 16px;
-    border-radius: 30px;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    z-index: 10;
-    display: flex;
-    align-items: center;
-}
-
-/* Floating Stats Card (Bottom Overlay) */
-.floating-stats {
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
+/* الكروت المصغرة داخل الأقسام */
+.mini-contact-card {
     background: white;
     border-radius: 16px;
-    padding: 15px 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    z-index: 10;
-}
-
-.stat-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    flex: 1;
-}
-
-.icon-circle {
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-.orange-icon { color: #ff9f43; }
-.red-icon { color: #ff6b6b; }
-.blue-icon { color: #54a0ff; }
-
-.stat-text { display: flex; flex-direction: column; }
-.stat-text .label { font-size: 0.7rem; color: #888; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;}
-.stat-text .value { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); }
-
-.vertical-divider {
-    width: 1px;
-    height: 30px;
-    background-color: #eee;
-}
-
-/* Right Column */
-.recipe-details-col {
-    padding: 40px 50px;
-}
-
-.badge-pill {
-    padding: 6px 14px;
-    border-radius: 8px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    margin-right: 8px;
-}
-.bg-green-light { background: #e0f8eb; color: #00b894; }
-.bg-blue-light { background: #e3f2fd; color: #0984e3; }
-.bg-purple-light { background: #f3e5f5; color: #9c27b0; }
-
-.action-buttons .btn-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    border: none;
-    background: #fff0e6;
-    color: var(--primary-orange);
-    margin-left: 10px;
-    font-size: 1rem;
-    transition: 0.2s;
-}
-.action-buttons .btn-icon:hover { background: var(--primary-orange); color: white; }
-
-h1 { font-weight: 800; color: #000; margin-top: 15px; font-size: 2.2rem; }
-
-/* Alert Box */
-.alert-box {
-    background-color: #fff5f5;
-    border-left: 4px solid #ff4757;
-    padding: 15px 20px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
-}
-.alert-box i { font-size: 1.4rem; color: #ff4757; margin-right: 15px; }
-.alert-title { font-weight: 700; color: #c0392b; font-size: 0.9rem; display: block; }
-.alert-desc { font-size: 0.85rem; color: #c0392b; }
-
-/* Tabs */
-.custom-tabs { border-bottom: 2px solid #f1f2f6; }
-.custom-tabs .nav-link {
-    border: none;
-    color: #888;
-    font-weight: 600;
-    padding-bottom: 12px;
-    margin-right: 20px;
-}
-.custom-tabs .nav-link.active {
-    color: var(--primary-orange);
-    background: transparent;
-    border-bottom: 3px solid var(--primary-orange);
-}
-.custom-tabs .nav-link i { margin-right: 5px; }
-
-/* Ingredients List (The Cream Box) */
-.ingredients-box {
-    background-color: var(--cream-bg);
-    border-radius: 12px;
-    padding: 25px;
-}
-
-.ingredients-box li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 14px;
-    font-weight: 500;
-    color: #444;
-}
-
-.num-circle {
-    width: 24px;
-    height: 24px;
-    background-color: var(--primary-orange);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-right: 15px;
-    flex-shrink: 0;
-}
-
-/* Nutrition Grid */
-.nutri-card {
-    background: #f8f9fa;
-    border-radius: 12px;
     padding: 15px;
+    border: 1px solid rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    transition: 0.3s;
 }
-.nutri-icon-box {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-    font-size: 1.1rem;
-}
-/* Specific colors for nutrition icons */
-.bg-cal { background: #fff3e0; color: #ff9f43; }
-.bg-pro { background: #e3f2fd; color: #54a0ff; }
-.bg-carb { background: #fff9c4; color: #f1c40f; }
-.bg-fat { background: #ffebee; color: #ff6b6b; }
 
-.nutri-info { display: flex; flex-direction: column; }
-.nutri-label { font-size: 0.8rem; color: #888; }
-.nutri-val { font-weight: 700; font-size: 1rem; color: var(--text-dark); }
-
-/* Main Button */
-.btn-main {
-    background: var(--primary-gradient);
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 1rem;
-    box-shadow: 0 5px 15px rgba(255, 78, 0, 0.3);
-    transition: transform 0.2s;
-    display: inline-flex;
-    align-items: center;
+.mini-contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.05);
 }
-.btn-main:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 78, 0, 0.4);
+
+.initials2 {
+    border-radius: 15px; background: var(--primary);
+    color: white; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.4rem;
 }
