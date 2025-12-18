@@ -141,9 +141,9 @@ function renderSubSection(property, elementId, emptyMsg) {
 
 function saveAndRefresh() {
     localStorage.setItem('contactHub_Final', JSON.stringify(contacts));
-    renderMainGrid(); // الشبكة الرئيسية
-    renderSubSection('isFav', 'favoritesList', 'No favorites yet'); // تحديث المفضلات
-    renderSubSection('isEmer', 'emergencyList', 'No emergency contacts'); // تحديث الطوارئ
+    renderMainGrid(); 
+    renderSubSection('isFav', 'favoritesList', 'No favorites yet'); 
+    renderSubSection('isEmer', 'emergencyList', 'No emergency contacts'); 
     updateStats(); 
 }
 
