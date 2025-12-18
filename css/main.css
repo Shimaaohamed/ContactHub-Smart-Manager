@@ -137,22 +137,21 @@ img{
 
 
 .dashboard {
-    max-width: 1140px; /* العرض المثالي ليتناسب مع معظم الشاشات */
-    margin: 40px auto; /* مسافة 40px من الأعلى والأسفل، و auto للتوسيط الجانبي */
-    padding: 0 20px;   /* مسافة أمان جانبية للشاشات الصغيرة */
+    max-width: 1140px; 
+    margin: 40px auto; 
+    padding: 0 20px;   
     box-sizing: border-box;
 }
 
-/* تحسين شكل صناديق الأقسام لتبدو منفصلة وأنيقة */
 .section-box {
-    margin: 30px auto; /* مسافة بين الأقسام */
-    max-width: 1140px; /* ضمان نفس عرض الـ Dashboard */
+    margin: 30px auto; 
+    max-width: 1140px; 
     padding: 25px;
     border-radius: 20px;
     transition: 0.3s;
 }
 
-/* ألوان الخلفيات الهادئة (Pastel) كما في الصور */
+
 .favorites-bg { 
     background-color: #fffaf0; 
     border: 1px solid #ffedd5; 
@@ -163,7 +162,7 @@ img{
     border: 1px solid #ffe4e6; 
 }
 
-/* الكروت المصغرة داخل الأقسام */
+
 .mini-contact-card {
     background: white;
     border-radius: 16px;

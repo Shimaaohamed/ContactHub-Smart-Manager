@@ -61,8 +61,8 @@ contactForm.onsubmit = (e) => {
 
 function renderAll() {
     renderMainGrid();     
-    renderSubSection('isFav', 'favoritesList', 'No favorites yet'); // قائمة المفضلات
-    renderSubSection('isEmer', 'emergencyList', 'No emergency contacts'); // قائمة الطوارئ
+    renderSubSection('isFav', 'favoritesList', 'No favorites yet'); 
+    renderSubSection('isEmer', 'emergencyList', 'No emergency contacts'); 
     updateStats();
 }
 
@@ -175,7 +175,7 @@ function toggleStatus(index, property) {
 }
 
 function saveAndRefresh() {
-    localStorage.setItem('contactHub_v3', JSON.stringify(contacts)); // حفظ البيانات
+    localStorage.setItem('contactHub_v3', JSON.stringify(contacts)); 
     renderAll(); 
 }
 
